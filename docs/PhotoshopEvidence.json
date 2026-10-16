@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-15",
+  "referenceProject": "/Volumes/Storage/Workspace/Engineering/Projects/Adobe/Photoshop",
+  "references": [
+    {
+      "path": "recovered/interface/Required/drover_layouts/color_panel.eve",
+      "sha256": "e7f4f8e3bb26e19f7382648862d06ad106b41a8970e2363c7fac9f0a5e21d4ac"
+    },
+    {
+      "path": "recovered/interface/Required/layouts/Color/Panels/color-1590.exv",
+      "sha256": "413b1e87dec6a2d94debf916910fa2edeb969b468875aed96eeb74abbb01cf46"
+    },
+    {
+      "path": "recovered/interface/Required/drover_layouts/dialogs/color_picker_dialog.eve",
+      "sha256": "f50fbb941f097c5e68aa606ab58a2410e5824a52ba3f7d427a95506d0703f79e"
+    }
+  ],
+  "scope": "Recovered UI contracts; independently implemented C++23 conversions and picker state; no Adobe source copied."
+}
