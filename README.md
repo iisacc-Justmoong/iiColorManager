@@ -1,5 +1,10 @@
 # iiColorManager
 
+Package release: **0.1.1** (2026-10-19). This patch packages the current
+source snapshot; build, test and installation evidence is recorded in the SDK
+patch-release report. Earlier versioned feature notes remain historical.
+
+
 Native C++23 color conversion and color-picker state for iiSDK applications.
 The exported `iiColorManager::iiColorManager` CMake target has no Qt, platform UI,
 Adobe runtime, interpreter, or other SDK dependency.
@@ -28,7 +33,7 @@ ctest --test-dir build --output-on-failure
 cmake --install build --prefix /path/to/iiColorManager
 ```
 
-Consumers use `find_package(iiColorManager 0.1.0 CONFIG REQUIRED)` and
+Consumers use `find_package(iiColorManager 0.1.1 CONFIG REQUIRED)` and
 `target_link_libraries(app PRIVATE iiColorManager::iiColorManager)`.
 The project builds native code using the consumer's platform toolchain; host
 tests do not establish execution on other operating systems.
