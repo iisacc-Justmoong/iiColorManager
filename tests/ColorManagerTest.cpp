@@ -67,6 +67,19 @@ void surfaces() {
     auto image=CM::renderSurface(p,CM::Surface::HueCube,3,3);require(image&&image->rgba.size()==36,"Invalid raster layout");require(image->rgba[0]==255&&image->rgba[1]==255&&image->rgba[2]==255,"Surface orientation mismatch");
     require(!CM::renderSurface(p,CM::Surface::HueCube,0,10)&&!CM::renderSurface(p,CM::Surface::HueCube,100000,100000),"Invalid dimensions accepted");
     require(!CM::renderSurface(p,CM::Surface::ChannelRamp,10,10,static_cast<CM::Channel>(99)),"Invalid channel raster accepted");
+    for(auto surface:{CM::Surface::HueCube,CM::Surface::BrightnessCube,CM::Surface::ColorWheel,
+                      CM::Surface::HueRail,CM::Surface::BrightnessRail,CM::Surface::Spectrum,CM::Surface::ChannelRamp})
+        for(auto width:{1U,2U,17U}) for(auto height:{1U,3U,19U}) {
+            const auto raster=CM::renderSurface(p,surface,width,height,CM::Channel::Alpha);
+            require(bool(raster),"Reference surface rejected");
+            for(unsigned y=0;y<height;++y) for(unsigned x=0;x<width;++x) {
+                const auto color=p.surfaceColor(surface,width>1?double(x)/(width-1):.5,height>1?double(y)/(height-1):.5,CM::Channel::Alpha);
+                const auto offset=(std::size_t(y)*width+x)*4;
+                const double channels[]{color.r,color.g,color.b,color.a};
+                for(unsigned channel=0;channel<4;++channel)
+                    require(raster->rgba[offset+channel]==std::uint8_t(std::lround(channels[channel]*255)),"Raster differs from scalar surface sampling");
+            }
+        }
 }
 void validation() {
     CM::Picker p;const auto c=p.color();const auto nan=std::numeric_limits<double>::quiet_NaN();

@@ -180,10 +180,16 @@ Point Picker::position(Surface s,Channel c) const noexcept {
 std::optional<SurfaceImage> renderSurface(const Picker& p,Surface s,std::uint32_t w,std::uint32_t h,Channel c) {
     if(!valid(s)||!w||!h||std::uint64_t(w)*h>16'000'000||(s==Surface::ChannelRamp&&!channelInfo(c)))return {};
     SurfaceImage result{w,h,std::vector<std::uint8_t>(std::size_t(w)*h*4)};
+    const bool vertical=s==Surface::HueRail||s==Surface::BrightnessRail;
     for(std::uint32_t y=0;y<h;y++) {
       if(y&&(s==Surface::ChannelRamp||s==Surface::Spectrum)) { std::copy_n(result.rgba.begin(),std::size_t(w)*4,result.rgba.begin()+std::size_t(y)*w*4);continue; }
-      for(std::uint32_t x=0;x<w;x++) {const auto color=p.surfaceColor(s,w>1?double(x)/(w-1):.5,h>1?double(y)/(h-1):.5,c);const auto i=(std::size_t(y)*w+x)*4;
+      for(std::uint32_t x=0;x<(vertical?1:w);x++) {const auto color=p.surfaceColor(s,w>1?double(x)/(w-1):.5,h>1?double(y)/(h-1):.5,c);const auto i=(std::size_t(y)*w+x)*4;
         result.rgba[i]=std::uint8_t(std::lround(color.r*255));result.rgba[i+1]=std::uint8_t(std::lround(color.g*255));result.rgba[i+2]=std::uint8_t(std::lround(color.b*255));result.rgba[i+3]=std::uint8_t(std::lround(color.a*255));}
+      if(vertical) {
+          const auto row=std::size_t(y)*w*4;
+          for(std::uint32_t x=1;x<w;++x)
+              std::copy_n(result.rgba.begin()+row,4,result.rgba.begin()+row+std::size_t(x)*4);
+      }
     }
     return result;
 }
