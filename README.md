@@ -44,3 +44,11 @@ See [color and interaction contracts](docs/ColorModes.md) and
 [Photoshop reference evidence](docs/PhotoshopEvidence.md). CMYK is a documented
 generic device model, not an ICC press conversion. This package does not claim
 native Photoshop pixel equivalence or arbitrary document/profile conversion.
+
+## License
+
+SPDX-License-Identifier: MIT
+
+The original code and documentation in this repository are licensed under the
+[MIT License](LICENSE). Third-party code, libraries, fonts, tools, and model
+weights retain their respective licenses.
