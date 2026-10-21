@@ -14,7 +14,7 @@ if(PROJECT_IS_TOP_LEVEL AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         message(FATAL_ERROR "Set CMAKE_INSTALL_PREFIX explicitly")
     endif()
 endif()
-add_library(iiColorManager src/ColorManager.cpp)
+add_library(iiColorManager src/iiColorManager/ColorManager.cpp)
 add_library(iiColorManager::iiColorManager ALIAS iiColorManager)
 target_compile_features(iiColorManager PUBLIC cxx_std_23)
 set_target_properties(iiColorManager PROPERTIES CXX_EXTENSIONS OFF
@@ -23,7 +23,7 @@ set_target_properties(iiColorManager PROPERTIES CXX_EXTENSIONS OFF
 generate_export_header(iiColorManager BASE_NAME IICOLORMANAGER
     EXPORT_FILE_NAME "${CMAKE_CURRENT_BINARY_DIR}/include/iiColorManager/Export.h")
 target_include_directories(iiColorManager PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 if(NOT BUILD_SHARED_LIBS)
@@ -39,7 +39,9 @@ install(TARGETS iiColorManager EXPORT iiColorManagerTargets
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES
+    src/iiColorManager/ColorManager.h
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/include/iiColorManager/Export.h"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager)
 install(EXPORT iiColorManagerTargets NAMESPACE iiColorManager:: DESTINATION "${_package_dir}")
