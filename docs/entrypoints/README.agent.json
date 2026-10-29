@@ -10,9 +10,9 @@
   },
   "source": {
     "path": "README.md",
-    "sha256": "820d09a32ad9396270e87f92d95bbcea92f268f65be9fcb2ca042b82f52ce895",
-    "bytes": 3475,
-    "line_count": 79,
+    "sha256": "bb1ad7b361374b45a5ea12e71d55ee9f83058f3b2045e371da3c74523d0b16fa",
+    "bytes": 3547,
+    "line_count": 80,
     "encoding": "utf-8",
     "language": "en"
   },
@@ -234,42 +234,42 @@
       "id": "b000029",
       "kind": "paragraph",
       "start_line": 62,
-      "end_line": 66,
-      "raw": "Public headers and implementations live together in `src/iiColorManager/`.\nThere is no separate authored `include/` tree. Existing public `#include` names\nand exported CMake targets are unchanged; installation still places only public\nheaders in the package include directory. Generated export headers belong to\n`build/`, not to the authored source tree.\n"
+      "end_line": 67,
+      "raw": "Public headers and implementations live together directly in `src/`.\nThere is no separate authored `include/` tree. Existing public `#include` names\nand exported CMake targets are unchanged; installation still places only public\nheaders in the package include directory. CMake generates build-only forwarding\nheaders for the existing include names. Generated export headers belong to\n`build/`, not to the authored source tree.\n"
     },
     {
       "id": "b000030",
       "kind": "blank",
-      "start_line": 67,
-      "end_line": 67,
+      "start_line": 68,
+      "end_line": 68,
       "raw": "\n"
     },
     {
       "id": "b000031",
       "kind": "paragraph",
-      "start_line": 68,
-      "end_line": 70,
+      "start_line": 69,
+      "end_line": 71,
       "raw": "Validate this layout from the SDK workspace with\n`python3 -B tests/test_source_header_layout.py`. Reconfigure, build, run CTest,\nand verify a staged installed consumer after changing source/header paths.\n"
     },
     {
       "id": "b000032",
       "kind": "blank",
-      "start_line": 71,
-      "end_line": 71,
+      "start_line": 72,
+      "end_line": 72,
       "raw": "\n"
     },
     {
       "id": "b000033",
       "kind": "html",
-      "start_line": 72,
-      "end_line": 72,
+      "start_line": 73,
+      "end_line": 73,
       "raw": "<!-- workspace-docs:readme:start -->\n"
     },
     {
       "id": "b000034",
       "kind": "heading",
-      "start_line": 73,
-      "end_line": 73,
+      "start_line": 74,
+      "end_line": 74,
       "raw": "## Documentation entry points\n",
       "level": 2,
       "title": "Documentation entry points"
@@ -277,15 +277,15 @@
     {
       "id": "b000035",
       "kind": "blank",
-      "start_line": 74,
-      "end_line": 74,
+      "start_line": 75,
+      "end_line": 75,
       "raw": "\n"
     },
     {
       "id": "b000036",
       "kind": "list",
-      "start_line": 75,
-      "end_line": 78,
+      "start_line": 76,
+      "end_line": 79,
       "raw": "- Human overview: this English `README.md`.\n- Agent instructions: [AGENT.md](AGENT.md).\n- Human documentation: [documentation index](docs/README.md).\n- Structured agent documentation: [agent index](docs/agent-index.json).\n",
       "items": [
         {
@@ -313,8 +313,8 @@
     {
       "id": "b000037",
       "kind": "html",
-      "start_line": 79,
-      "end_line": 79,
+      "start_line": 80,
+      "end_line": 80,
       "raw": "<!-- workspace-docs:readme:end -->\n"
     }
   ],
@@ -349,7 +349,7 @@
       "level": 2,
       "title": "Documentation entry points",
       "anchor": "documentation-entry-points",
-      "start_line": 73
+      "start_line": 74
     }
   ],
   "indexes": {
@@ -417,21 +417,21 @@
         "label": "AGENT.md",
         "target": "AGENT.md",
         "kind": "relative",
-        "line": 76
+        "line": 77
       },
       {
         "block_id": "b000036",
         "label": "documentation index",
         "target": "docs/README.md",
         "kind": "relative",
-        "line": 77
+        "line": 78
       },
       {
         "block_id": "b000036",
         "label": "agent index",
         "target": "docs/agent-index.json",
         "kind": "relative",
-        "line": 78
+        "line": 79
       }
     ],
     "tables": []

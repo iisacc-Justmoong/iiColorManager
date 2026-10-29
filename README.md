@@ -59,10 +59,11 @@ weights retain their respective licenses.
 
 ## Source header layout
 
-Public headers and implementations live together in `src/iiColorManager/`.
+Public headers and implementations live together directly in `src/`.
 There is no separate authored `include/` tree. Existing public `#include` names
 and exported CMake targets are unchanged; installation still places only public
-headers in the package include directory. Generated export headers belong to
+headers in the package include directory. CMake generates build-only forwarding
+headers for the existing include names. Generated export headers belong to
 `build/`, not to the authored source tree.
 
 Validate this layout from the SDK workspace with

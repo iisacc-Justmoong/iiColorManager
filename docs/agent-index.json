@@ -21,7 +21,7 @@
       "document_id": "urn:iisacc:document:4f40a153ca94b7ee14ca739671f26ecf9dfff5fb1a7650cd53f97d960ca4c974",
       "source": "README.md",
       "agent_json": "docs/entrypoints/README.agent.json",
-      "source_sha256": "820d09a32ad9396270e87f92d95bbcea92f268f65be9fcb2ca042b82f52ce895",
+      "source_sha256": "bb1ad7b361374b45a5ea12e71d55ee9f83058f3b2045e371da3c74523d0b16fa",
       "role": "overview"
     },
     {
@@ -35,7 +35,7 @@
       "document_id": "urn:iisacc:document:4f4e956fe485412ae3bd619297079714ae0b12c3181d3388fa7ab53bd0881cb9",
       "source": "docs/ColorValues.md",
       "agent_json": "docs/ColorValues.agent.json",
-      "source_sha256": "f6aa8f8d165f456e35f6be59ed4308ab6320967a22788e5f3a20b8abd97786ef",
+      "source_sha256": "3f537b86ca416a1186d6e7e0298d508b2b0e89814a4c20095320f81fb7117243",
       "role": "guide"
     },
     {

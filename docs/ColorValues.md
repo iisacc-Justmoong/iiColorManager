@@ -1,5 +1,8 @@
 # 공유 색상 값 계약
 
+색상 값 헤더와 Picker의 헤더·구현은 `src/`에 함께 둔다. 빌드용 전달 헤더와
+설치된 공개 헤더는 기존 `<iiColorManager/ColorValue.h>` 경로를 유지한다.
+
 `iiColorManager::Values`는 `ColorValue.h`의 독립적인 C++23 값 대상이다. GUI·Core
 Runtime·Picker 공유 라이브러리를 연결하지 않고 encoded sRGB RGBA·범위 검증·HEX 해석·
 encoded 공간 source-over 합성을 사용한다. `Rgba`의 기존 필드와 배치·HEX 바이트 순서와

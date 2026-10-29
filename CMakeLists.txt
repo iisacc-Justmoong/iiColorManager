@@ -14,13 +14,18 @@ if(PROJECT_IS_TOP_LEVEL AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         message(FATAL_ERROR "Set CMAKE_INSTALL_PREFIX explicitly")
     endif()
 endif()
-add_library(iiColorManager src/iiColorManager/ColorManager.cpp)
+foreach(_header ColorManager.h ColorValue.h)
+    file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/include/iiColorManager/${_header}"
+        CONTENT "#pragma once\n#include \"${CMAKE_CURRENT_SOURCE_DIR}/src/${_header}\"\n")
+endforeach()
+add_library(iiColorManager src/ColorManager.cpp)
 add_library(iiColorManager::iiColorManager ALIAS iiColorManager)
 add_library(iiColorManagerValues INTERFACE)
 add_library(iiColorManager::Values ALIAS iiColorManagerValues)
 set_target_properties(iiColorManagerValues PROPERTIES EXPORT_NAME Values)
 target_compile_features(iiColorManagerValues INTERFACE cxx_std_23)
 target_include_directories(iiColorManagerValues INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 target_link_libraries(iiColorManager PUBLIC iiColorManager::Values)
@@ -49,9 +54,9 @@ install(TARGETS iiColorManager EXPORT iiColorManagerTargets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(TARGETS iiColorManagerValues EXPORT iiColorManagerValuesTargets COMPONENT Values)
 install(FILES
-    src/iiColorManager/ColorManager.h
+    src/ColorManager.h
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager)
-install(FILES src/iiColorManager/ColorValue.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager COMPONENT Values)
+install(FILES src/ColorValue.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager COMPONENT Values)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/include/iiColorManager/Export.h"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager)
 install(EXPORT iiColorManagerTargets NAMESPACE iiColorManager:: DESTINATION "${_package_dir}")
@@ -65,6 +70,9 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfig.cmake"
 install(FILES README.md DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager)
 install(DIRECTORY docs/ DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager/docs)
 if(BUILD_TESTING)
+    add_test(NAME iiColorManager.source_layout COMMAND "${CMAKE_COMMAND}"
+        "-DPROJECT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/SourceLayout.cmake")
     add_executable(iiColorValueTests tests/ColorValueTest.cpp)
     target_link_libraries(iiColorValueTests PRIVATE iiColorManager::Values)
     add_test(NAME iiColorManager.values COMMAND iiColorValueTests)
