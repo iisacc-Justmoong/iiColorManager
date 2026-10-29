@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.24)
+project(ColorPickerConsumer LANGUAGES CXX)
+find_package(iiColorManager 0.1.1 CONFIG REQUIRED)
+add_executable(picker_consumer main.cpp)
+target_link_libraries(picker_consumer PRIVATE iiColorManager::iiColorManager)
+enable_testing()
+add_test(NAME iiColorManager.PickerConsumer COMMAND picker_consumer)

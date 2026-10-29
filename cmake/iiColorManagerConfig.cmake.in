@@ -1,3 +1,8 @@
 @PACKAGE_INIT@
-include("${CMAKE_CURRENT_LIST_DIR}/iiColorManagerTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/iiColorManagerValuesTargets.cmake")
+set(iiColorManager_Values_FOUND TRUE)
+if(NOT iiColorManager_FIND_COMPONENTS OR "iiColorManager" IN_LIST iiColorManager_FIND_COMPONENTS)
+    include("${CMAKE_CURRENT_LIST_DIR}/iiColorManagerTargets.cmake")
+    set(iiColorManager_iiColorManager_FOUND TRUE)
+endif()
 check_required_components(iiColorManager)

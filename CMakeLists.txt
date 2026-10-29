@@ -16,6 +16,14 @@ if(PROJECT_IS_TOP_LEVEL AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 add_library(iiColorManager src/iiColorManager/ColorManager.cpp)
 add_library(iiColorManager::iiColorManager ALIAS iiColorManager)
+add_library(iiColorManagerValues INTERFACE)
+add_library(iiColorManager::Values ALIAS iiColorManagerValues)
+set_target_properties(iiColorManagerValues PROPERTIES EXPORT_NAME Values)
+target_compile_features(iiColorManagerValues INTERFACE cxx_std_23)
+target_include_directories(iiColorManagerValues INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_link_libraries(iiColorManager PUBLIC iiColorManager::Values)
 target_compile_features(iiColorManager PUBLIC cxx_std_23)
 set_target_properties(iiColorManager PROPERTIES CXX_EXTENSIONS OFF
     CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN YES
@@ -39,21 +47,34 @@ install(TARGETS iiColorManager EXPORT iiColorManagerTargets
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS iiColorManagerValues EXPORT iiColorManagerValuesTargets COMPONENT Values)
 install(FILES
     src/iiColorManager/ColorManager.h
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager)
+install(FILES src/iiColorManager/ColorValue.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager COMPONENT Values)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/include/iiColorManager/Export.h"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/iiColorManager)
 install(EXPORT iiColorManagerTargets NAMESPACE iiColorManager:: DESTINATION "${_package_dir}")
+install(EXPORT iiColorManagerValuesTargets NAMESPACE iiColorManager:: DESTINATION "${_package_dir}" COMPONENT Values)
 configure_package_config_file(cmake/iiColorManagerConfig.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfig.cmake" INSTALL_DESTINATION "${_package_dir}")
 write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfigVersion.cmake"
     VERSION ${PROJECT_VERSION} COMPATIBILITY SameMinorVersion)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfigVersion.cmake" DESTINATION "${_package_dir}")
+    "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfigVersion.cmake" DESTINATION "${_package_dir}" COMPONENT Values)
 install(FILES README.md DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager)
 install(DIRECTORY docs/ DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager/docs)
 if(BUILD_TESTING)
+    add_executable(iiColorValueTests tests/ColorValueTest.cpp)
+    target_link_libraries(iiColorValueTests PRIVATE iiColorManager::Values)
+    add_test(NAME iiColorManager.values COMMAND iiColorValueTests)
+    add_test(NAME iiColorManager.installed_consumers COMMAND "${CMAKE_COMMAND}"
+        "-DBUILD_ROOT=${CMAKE_CURRENT_BINARY_DIR}" "-DSOURCE_ROOT=${CMAKE_CURRENT_SOURCE_DIR}"
+        "-DCTEST_COMMAND=${CMAKE_CTEST_COMMAND}" "-DCXX_COMPILER=${CMAKE_CXX_COMPILER}"
+        "-DBUILD_GENERATOR=${CMAKE_GENERATOR}" "-DINSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}" "-DBUILD_CONFIG=$<CONFIG>"
+        "-DCONSUMER_FLAGS=${CMAKE_CXX_FLAGS}" "-DDEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/InstallConsumers.cmake")
+    set_tests_properties(iiColorManager.installed_consumers PROPERTIES TIMEOUT 120)
     add_executable(iiColorManagerTests tests/ColorManagerTest.cpp)
     target_link_libraries(iiColorManagerTests PRIVATE iiColorManager::iiColorManager)
     foreach(_case conversions lab state modes surfaces validation)

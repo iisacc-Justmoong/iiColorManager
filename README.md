@@ -1,6 +1,10 @@
 # iiColorManager
 
-[Windows 빌드 및 실행](docs/WindowsBuildAndRun.md)
+The header-only `iiColorManager::Values` target provides shared encoded-sRGB
+RGBA values, validation, hexadecimal parsing, and source-over composition without
+linking the picker library. See [Color values](docs/ColorValues.md).
+
+[Windows build and execution](docs/WindowsBuildAndRun.md)
 
 Package release: **0.1.1** (2026-10-19). This patch packages the current
 source snapshot; build, test and installation evidence is recorded in the SDK
@@ -64,3 +68,12 @@ headers in the package include directory. Generated export headers belong to
 Validate this layout from the SDK workspace with
 `python3 -B tests/test_source_header_layout.py`. Reconfigure, build, run CTest,
 and verify a staged installed consumer after changing source/header paths.
+
+<!-- workspace-docs:readme:start -->
+## Documentation entry points
+
+- Human overview: this English `README.md`.
+- Agent instructions: [AGENT.md](AGENT.md).
+- Human documentation: [documentation index](docs/README.md).
+- Structured agent documentation: [agent index](docs/agent-index.json).
+<!-- workspace-docs:readme:end -->

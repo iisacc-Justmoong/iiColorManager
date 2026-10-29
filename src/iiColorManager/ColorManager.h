@@ -1,5 +1,6 @@
 #pragma once
 #include <iiColorManager/Export.h>
+#include <iiColorManager/ColorValue.h>
 #include <array>
 #include <cstdint>
 #include <optional>
@@ -10,7 +11,6 @@
 
 namespace iiColorManager {
 // Unassociated, encoded sRGB. Picker colors are SDR; every component is [0,1].
-struct Rgba { double r=0, g=0, b=0, a=1; bool operator==(const Rgba&) const = default; };
 struct Hsb { double h=0, s=0, b=0; }; // Degrees [0,360), percent [0,100].
 struct Cmyk { double c=0, m=0, y=0, k=0; }; // Generic CMYK percentages, without an ICC press profile.
 struct Lab { double l=0, a=0, b=0; }; // CIELAB, D50 white; L [0,100], a/b [-128,127].

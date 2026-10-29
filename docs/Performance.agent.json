@@ -1,0 +1,99 @@
+{
+  "format": "iisacc.agent-document",
+  "schema_version": 1,
+  "document_id": "urn:iisacc:document:b10c88a3395fddb5ebe5f18fb9c0a1b1afb671415095f3f5522aeaf4349b8d81",
+  "project": {
+    "id": "urn:iisacc:project:SDK%2FiiColorManager",
+    "name": "iiColorManager",
+    "root": "SDK/iiColorManager",
+    "kind": "sdk"
+  },
+  "source": {
+    "path": "docs/Performance.md",
+    "sha256": "5b564fd4e2bc35a163be0fe99555b28d6f97fa573afced5a624eb8bf6b55f24e",
+    "bytes": 732,
+    "line_count": 13,
+    "encoding": "utf-8",
+    "language": "en"
+  },
+  "document": {
+    "title": "Surface rendering cost",
+    "role": "guide",
+    "authority": "markdown_source"
+  },
+  "blocks": [
+    {
+      "id": "b000001",
+      "kind": "heading",
+      "start_line": 1,
+      "end_line": 1,
+      "raw": "# Surface rendering cost\n",
+      "level": 1,
+      "title": "Surface rendering cost"
+    },
+    {
+      "id": "b000002",
+      "kind": "blank",
+      "start_line": 2,
+      "end_line": 2,
+      "raw": "\n"
+    },
+    {
+      "id": "b000003",
+      "kind": "paragraph",
+      "start_line": 3,
+      "end_line": 6,
+      "raw": "Hue and brightness rails depend on the row coordinate only. The renderer samples\neach row once and copies that exact RGBA8 pixel across the row. Horizontal ramps\nand spectrum retain their existing first-row reuse. Color conversion work for a\nvertical rail is O(height), while writing the output remains O(width * height).\n"
+    },
+    {
+      "id": "b000004",
+      "kind": "blank",
+      "start_line": 7,
+      "end_line": 7,
+      "raw": "\n"
+    },
+    {
+      "id": "b000005",
+      "kind": "paragraph",
+      "start_line": 8,
+      "end_line": 11,
+      "raw": "The surface regression compares every output channel to independent scalar\n`Picker::surfaceColor` sampling for all seven surface types, including one-pixel\ndimensions, non-square images, wheel transparency and the alpha channel. Color\nrounding, orientation, geometry limits and picker state are unchanged.\n"
+    },
+    {
+      "id": "b000006",
+      "kind": "blank",
+      "start_line": 12,
+      "end_line": 12,
+      "raw": "\n"
+    },
+    {
+      "id": "b000007",
+      "kind": "paragraph",
+      "start_line": 13,
+      "end_line": 13,
+      "raw": "The SDK-wide performance record is under `SDK/build/performance-20261020/`.\n"
+    }
+  ],
+  "outline": [
+    {
+      "block_id": "b000001",
+      "parent_id": null,
+      "level": 1,
+      "title": "Surface rendering cost",
+      "anchor": "surface-rendering-cost",
+      "start_line": 1
+    }
+  ],
+  "indexes": {
+    "directive_candidates": [],
+    "commands": [],
+    "links": [],
+    "tables": []
+  },
+  "provenance": {
+    "generator": "workspace-docs",
+    "version": "1.0.0",
+    "profile": "lossless-blocks-v1",
+    "derived": true
+  }
+}

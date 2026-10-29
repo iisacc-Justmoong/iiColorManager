@@ -1,0 +1,149 @@
+{
+  "format": "iisacc.agent-document",
+  "schema_version": 1,
+  "document_id": "urn:iisacc:document:4f4e956fe485412ae3bd619297079714ae0b12c3181d3388fa7ab53bd0881cb9",
+  "project": {
+    "id": "urn:iisacc:project:SDK%2FiiColorManager",
+    "name": "iiColorManager",
+    "root": "SDK/iiColorManager",
+    "kind": "sdk"
+  },
+  "source": {
+    "path": "docs/ColorValues.md",
+    "sha256": "f6aa8f8d165f456e35f6be59ed4308ab6320967a22788e5f3a20b8abd97786ef",
+    "bytes": 2343,
+    "line_count": 28,
+    "encoding": "utf-8",
+    "language": "ko"
+  },
+  "document": {
+    "title": "공유 색상 값 계약",
+    "role": "guide",
+    "authority": "markdown_source"
+  },
+  "blocks": [
+    {
+      "id": "b000001",
+      "kind": "heading",
+      "start_line": 1,
+      "end_line": 1,
+      "raw": "# 공유 색상 값 계약\n",
+      "level": 1,
+      "title": "공유 색상 값 계약"
+    },
+    {
+      "id": "b000002",
+      "kind": "blank",
+      "start_line": 2,
+      "end_line": 2,
+      "raw": "\n"
+    },
+    {
+      "id": "b000003",
+      "kind": "paragraph",
+      "start_line": 3,
+      "end_line": 6,
+      "raw": "`iiColorManager::Values`는 `ColorValue.h`의 독립적인 C++23 값 대상이다. GUI·Core\nRuntime·Picker 공유 라이브러리를 연결하지 않고 encoded sRGB RGBA·범위 검증·HEX 해석·\nencoded 공간 source-over 합성을 사용한다. `Rgba`의 기존 필드와 배치·HEX 바이트 순서와\nfallback alpha 계약은 유지한다. Picker의 `parseHex`도 같은 해석 경로를 사용한다.\n"
+    },
+    {
+      "id": "b000004",
+      "kind": "blank",
+      "start_line": 7,
+      "end_line": 7,
+      "raw": "\n"
+    },
+    {
+      "id": "b000005",
+      "kind": "paragraph",
+      "start_line": 8,
+      "end_line": 11,
+      "raw": "`validRgba`는 네 채널의 유한한 0~1 범위를 검사한다. `parseHexValue`는 선택적인 `#`와\n3·4·6·8자리 HEX를 받으며 실패 시 빈 optional이다. `compositeSrgb`는 유효한 두 색상을\nencoded 공간에서 합성한다. 선형광 이미지 합성과 구분하며 유효하지 않은 입력은 거부한다.\n`encoded_srgb` 표지는 값의 인코딩 계약을 명시하며 데이터 필드를 추가하지 않는다.\n"
+    },
+    {
+      "id": "b000006",
+      "kind": "blank",
+      "start_line": 12,
+      "end_line": 12,
+      "raw": "\n"
+    },
+    {
+      "id": "b000007",
+      "kind": "paragraph",
+      "start_line": 13,
+      "end_line": 14,
+      "raw": "`tests/ColorValueTest.cpp`는 값 대상만 연결하여 검증·해석·합성을 실행한다. 기존\nColorManager 검사와 설치·재배치 소비자도 함께 검증한다.\n"
+    },
+    {
+      "id": "b000008",
+      "kind": "blank",
+      "start_line": 15,
+      "end_line": 15,
+      "raw": "\n"
+    },
+    {
+      "id": "b000009",
+      "kind": "paragraph",
+      "start_line": 16,
+      "end_line": 22,
+      "raw": "`cmake --install build --component Values --prefix <path>`는 값 헤더와 해당 CMake\n대상·설정만 설치한다. 이 패키지를 `find_package(iiColorManager COMPONENTS Values)`로\n사용할 때 Picker 대상이나 공유 라이브러리를 요구하지 않는다. 기본 전체 패키지 검색은\n기존 Picker 대상을 유지한다. 독립 소비자는 `tests/values_consumer`에 있다.\n전체 패키지의 기존 기본 검색·Picker 연결은 `tests/picker_consumer`에서 별도로 검사한다.\n두 소비자의 설치·재배치·독립 빌드·실행은 `iiColorManager.installed_consumers` CTest에\n포함한다. 결과는 해당 build/package-tests/ 안에 보관하고 글로벌 설치를 변경하지 않는다.\n"
+    },
+    {
+      "id": "b000010",
+      "kind": "blank",
+      "start_line": 23,
+      "end_line": 23,
+      "raw": "\n"
+    },
+    {
+      "id": "b000011",
+      "kind": "paragraph",
+      "start_line": 24,
+      "end_line": 28,
+      "raw": "2026-10-26 macOS arm64에서 일반 검사와 AddressSanitizer·UndefinedBehaviorSanitizer\n검사가 각각 8/8 통과했다. 값 전용 설치·재배치 소비자와 기존 전체 Picker 소비자는 각각\n1/1 통과했다. 값 전용 설치에는 공유/정적 라이브러리가 없으며 Values 검색으로 Picker\n대상을 가져오지 않는다. 글로벌 SDK 설치나 다른 앱의 재설치를 수행한 증거와 구분한다.\n통합 증거는 LVUI의 `build/lvui-completion/native-colors-verification-20261026.json`이다.\n"
+    }
+  ],
+  "outline": [
+    {
+      "block_id": "b000001",
+      "parent_id": null,
+      "level": 1,
+      "title": "공유 색상 값 계약",
+      "anchor": "공유-색상-값-계약",
+      "start_line": 1
+    }
+  ],
+  "indexes": {
+    "directive_candidates": [
+      {
+        "block_id": "b000005",
+        "line": 11,
+        "text": "`encoded_srgb` 표지는 값의 인코딩 계약을 명시하며 데이터 필드를 추가하지 않는다.",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      },
+      {
+        "block_id": "b000009",
+        "line": 18,
+        "text": "사용할 때 Picker 대상이나 공유 라이브러리를 요구하지 않는다. 기본 전체 패키지 검색은",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      },
+      {
+        "block_id": "b000009",
+        "line": 22,
+        "text": "포함한다. 결과는 해당 build/package-tests/ 안에 보관하고 글로벌 설치를 변경하지 않는다.",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      }
+    ],
+    "commands": [],
+    "links": [],
+    "tables": []
+  },
+  "provenance": {
+    "generator": "workspace-docs",
+    "version": "1.0.0",
+    "profile": "lossless-blocks-v1",
+    "derived": true
+  }
+}

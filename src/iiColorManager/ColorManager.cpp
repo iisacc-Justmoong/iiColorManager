@@ -93,13 +93,7 @@ GamutColor fromLab(Lab c,double alpha) noexcept {
 Rgba nearestWebSafe(Rgba c) noexcept { c=normalize(c);return {std::round(c.r*5)/5,std::round(c.g*5)/5,std::round(c.b*5)/5,c.a}; }
 bool isWebSafe(Rgba c) noexcept { if(!finite(c))return false;const auto w=nearestWebSafe(c);return std::abs(c.r-w.r)<1e-7&&std::abs(c.g-w.g)<1e-7&&std::abs(c.b-w.b)<1e-7; }
 std::optional<Rgba> parseHex(std::string_view text,double alpha) noexcept {
-    while(!text.empty()&&(text.front()==' '||text.front()=='\t'||text.front()=='\n'||text.front()=='\r'))text.remove_prefix(1);
-    while(!text.empty()&&(text.back()==' '||text.back()=='\t'||text.back()=='\n'||text.back()=='\r'))text.remove_suffix(1);
-    if(!text.empty()&&text.front()=='#')text.remove_prefix(1);
-    const auto size=text.size();if(size!=3&&size!=4&&size!=6&&size!=8)return {};
-    std::array<int,8> digits{};for(std::size_t i=0;i<size;i++) { const char c=text[i];digits[i]=c>='0'&&c<='9'?c-'0':c>='a'&&c<='f'?c-'a'+10:c>='A'&&c<='F'?c-'A'+10:-1;if(digits[i]<0)return {}; }
-    const bool shortForm=size<5;auto channel=[&](std::size_t i){return (shortForm?digits[i]*17:digits[i*2]*16+digits[i*2+1])/255.;};
-    return Rgba{channel(0),channel(1),channel(2),(size==4||size==8)?channel(3):bounded(alpha)};
+    return parseHexValue(text,alpha);
 }
 std::string toHex(Rgba input,bool alpha) {
     constexpr char hex[]="0123456789ABCDEF";const auto c=normalize(input);std::string text="#";for(const double n:{c.r,c.g,c.b,c.a}) { const auto b=unsigned(std::lround(n*255));text+=hex[b>>4];text+=hex[b&15];if(text.size()==7&&!alpha)break; }return text;

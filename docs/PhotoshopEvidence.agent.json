@@ -1,0 +1,251 @@
+{
+  "format": "iisacc.agent-document",
+  "schema_version": 1,
+  "document_id": "urn:iisacc:document:89ddb791f135b6d71f2a3c47e2ec27345c902a85a6e859947f5209206378bfea",
+  "project": {
+    "id": "urn:iisacc:project:SDK%2FiiColorManager",
+    "name": "iiColorManager",
+    "root": "SDK/iiColorManager",
+    "kind": "sdk"
+  },
+  "source": {
+    "path": "docs/PhotoshopEvidence.md",
+    "sha256": "4d56d1a1249e27744bcc181c109d6be029e240e87e2fdbefb04bc832b430e71e",
+    "bytes": 1971,
+    "line_count": 31,
+    "encoding": "utf-8",
+    "language": "en"
+  },
+  "document": {
+    "title": "Photoshop reference evidence",
+    "role": "guide",
+    "authority": "markdown_source"
+  },
+  "blocks": [
+    {
+      "id": "b000001",
+      "kind": "heading",
+      "start_line": 1,
+      "end_line": 1,
+      "raw": "# Photoshop reference evidence\n",
+      "level": 1,
+      "title": "Photoshop reference evidence"
+    },
+    {
+      "id": "b000002",
+      "kind": "blank",
+      "start_line": 2,
+      "end_line": 2,
+      "raw": "\n"
+    },
+    {
+      "id": "b000003",
+      "kind": "paragraph",
+      "start_line": 3,
+      "end_line": 5,
+      "raw": "Reference read: 2026-10-15, from the existing local project\n`Engineering/Projects/Adobe/Photoshop`, recorded as Photoshop 2026 27.10.0.\nNo recovered Adobe implementation is copied into this SDK.\n"
+    },
+    {
+      "id": "b000004",
+      "kind": "blank",
+      "start_line": 6,
+      "end_line": 6,
+      "raw": "\n"
+    },
+    {
+      "id": "b000005",
+      "kind": "paragraph",
+      "start_line": 7,
+      "end_line": 9,
+      "raw": "The provided screenshot establishes the nine mode names and their order.\nThe following recovered native interface declarations establish the observed\ninteraction structure:\n"
+    },
+    {
+      "id": "b000006",
+      "kind": "blank",
+      "start_line": 10,
+      "end_line": 10,
+      "raw": "\n"
+    },
+    {
+      "id": "b000007",
+      "kind": "table",
+      "start_line": 11,
+      "end_line": 15,
+      "raw": "| Local reference | Observed contract |\n| --- | --- |\n| `recovered/interface/Required/drover_layouts/color_panel.eve` | Foreground/background swatches, optional Gray/RGB/HSB/CMYK/Lab rows, a saturation/brightness color square, and a hue core slider |\n| `recovered/interface/Required/layouts/Color/Panels/color-1590.exv` | Cube cross-section/core, gray/RGB/HSB/CMYK/Lab slider groups, hexadecimal input, `TColorWheel`, web-safe alerts and nearest-web swatch |\n| `recovered/interface/Required/drover_layouts/dialogs/color_picker_dialog.eve` | New/current swatches, recent colors, numeric HSB/RGB/Lab/CMYK, accept and cancel |\n",
+      "columns": [
+        "Local reference",
+        "Observed contract"
+      ],
+      "rows": [
+        [
+          "`recovered/interface/Required/drover_layouts/color_panel.eve`",
+          "Foreground/background swatches, optional Gray/RGB/HSB/CMYK/Lab rows, a saturation/brightness color square, and a hue core slider"
+        ],
+        [
+          "`recovered/interface/Required/layouts/Color/Panels/color-1590.exv`",
+          "Cube cross-section/core, gray/RGB/HSB/CMYK/Lab slider groups, hexadecimal input, `TColorWheel`, web-safe alerts and nearest-web swatch"
+        ],
+        [
+          "`recovered/interface/Required/drover_layouts/dialogs/color_picker_dialog.eve`",
+          "New/current swatches, recent colors, numeric HSB/RGB/Lab/CMYK, accept and cancel"
+        ]
+      ]
+    },
+    {
+      "id": "b000008",
+      "kind": "blank",
+      "start_line": 16,
+      "end_line": 16,
+      "raw": "\n"
+    },
+    {
+      "id": "b000009",
+      "kind": "paragraph",
+      "start_line": 17,
+      "end_line": 21,
+      "raw": "The UI files name native host controls and parameter identifiers. They do not\nrecover the native color-transform engine or the active ICC profiles. The SDK\ntherefore implements independent native C++23 conversion and interaction models,\ntested against reference colors and state/geometry invariants. It does not claim\nPhotoshop renderer, ICC, HDR, spot-color, or round-trip document parity.\n"
+    },
+    {
+      "id": "b000010",
+      "kind": "blank",
+      "start_line": 22,
+      "end_line": 22,
+      "raw": "\n"
+    },
+    {
+      "id": "b000011",
+      "kind": "paragraph",
+      "start_line": 23,
+      "end_line": 23,
+      "raw": "Supporting primary references:\n"
+    },
+    {
+      "id": "b000012",
+      "kind": "blank",
+      "start_line": 24,
+      "end_line": 24,
+      "raw": "\n"
+    },
+    {
+      "id": "b000013",
+      "kind": "list",
+      "start_line": 25,
+      "end_line": 26,
+      "raw": "- [Adobe: Color panel](https://helpx.adobe.com/photoshop/desktop/adjust-color/choose-colors/choose-colors-in-the-color-panel.html)\n- [W3C: CSS Color 4 conversions](https://www.w3.org/TR/css-color-4/#color-conversion-code)\n",
+      "items": [
+        {
+          "marker": "-",
+          "text": "[Adobe: Color panel](https://helpx.adobe.com/photoshop/desktop/adjust-color/choose-colors/choose-colors-in-the-color-panel.html)",
+          "checked": null
+        },
+        {
+          "marker": "-",
+          "text": "[W3C: CSS Color 4 conversions](https://www.w3.org/TR/css-color-4/#color-conversion-code)",
+          "checked": null
+        }
+      ]
+    },
+    {
+      "id": "b000014",
+      "kind": "blank",
+      "start_line": 27,
+      "end_line": 27,
+      "raw": "\n"
+    },
+    {
+      "id": "b000015",
+      "kind": "paragraph",
+      "start_line": 28,
+      "end_line": 31,
+      "raw": "The Adobe reference confirms numeric slider models and the 216-color web-safe\ncube. W3C defines the independent sRGB/D50 Lab conversion used here. Native UI\nevidence, mathematical conversion tests and Dreamscapes GUI tests are distinct\nforms of evidence; none implies untested Photoshop behavior.\n"
+    }
+  ],
+  "outline": [
+    {
+      "block_id": "b000001",
+      "parent_id": null,
+      "level": 1,
+      "title": "Photoshop reference evidence",
+      "anchor": "photoshop-reference-evidence",
+      "start_line": 1
+    }
+  ],
+  "indexes": {
+    "directive_candidates": [
+      {
+        "block_id": "b000007",
+        "line": 13,
+        "text": "| `recovered/interface/Required/drover_layouts/color_panel.eve` | Foreground/background swatches, optional Gray/RGB/HSB/CMYK/Lab rows, a saturation/brightness color square, and a hue core slider |",
+        "basis": "lexical_match",
+        "context": "table"
+      },
+      {
+        "block_id": "b000007",
+        "line": 14,
+        "text": "| `recovered/interface/Required/layouts/Color/Panels/color-1590.exv` | Cube cross-section/core, gray/RGB/HSB/CMYK/Lab slider groups, hexadecimal input, `TColorWheel`, web-safe alerts and nearest-web swatch |",
+        "basis": "lexical_match",
+        "context": "table"
+      },
+      {
+        "block_id": "b000007",
+        "line": 15,
+        "text": "| `recovered/interface/Required/drover_layouts/dialogs/color_picker_dialog.eve` | New/current swatches, recent colors, numeric HSB/RGB/Lab/CMYK, accept and cancel |",
+        "basis": "lexical_match",
+        "context": "table"
+      },
+      {
+        "block_id": "b000009",
+        "line": 17,
+        "text": "The UI files name native host controls and parameter identifiers. They do not",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      }
+    ],
+    "commands": [],
+    "links": [
+      {
+        "block_id": "b000013",
+        "label": "Adobe: Color panel",
+        "target": "https://helpx.adobe.com/photoshop/desktop/adjust-color/choose-colors/choose-colors-in-the-color-panel.html",
+        "kind": "external",
+        "line": 25
+      },
+      {
+        "block_id": "b000013",
+        "label": "W3C: CSS Color 4 conversions",
+        "target": "https://www.w3.org/TR/css-color-4/#color-conversion-code",
+        "kind": "external",
+        "line": 26
+      }
+    ],
+    "tables": [
+      {
+        "block_id": "b000007",
+        "columns": [
+          "Local reference",
+          "Observed contract"
+        ],
+        "rows": [
+          [
+            "`recovered/interface/Required/drover_layouts/color_panel.eve`",
+            "Foreground/background swatches, optional Gray/RGB/HSB/CMYK/Lab rows, a saturation/brightness color square, and a hue core slider"
+          ],
+          [
+            "`recovered/interface/Required/layouts/Color/Panels/color-1590.exv`",
+            "Cube cross-section/core, gray/RGB/HSB/CMYK/Lab slider groups, hexadecimal input, `TColorWheel`, web-safe alerts and nearest-web swatch"
+          ],
+          [
+            "`recovered/interface/Required/drover_layouts/dialogs/color_picker_dialog.eve`",
+            "New/current swatches, recent colors, numeric HSB/RGB/Lab/CMYK, accept and cancel"
+          ]
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "generator": "workspace-docs",
+    "version": "1.0.0",
+    "profile": "lossless-blocks-v1",
+    "derived": true
+  }
+}

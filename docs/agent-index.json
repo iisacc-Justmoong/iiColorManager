@@ -1,0 +1,90 @@
+{
+  "format": "iisacc.agent-document-index",
+  "schema_version": 1,
+  "project": {
+    "id": "urn:iisacc:project:SDK%2FiiColorManager",
+    "name": "iiColorManager",
+    "root": "SDK/iiColorManager",
+    "kind": "sdk"
+  },
+  "documentation_root": "docs",
+  "agent_schema": "docs/agent-document.schema.json",
+  "documents": [
+    {
+      "document_id": "urn:iisacc:document:e576a11d26e5f3549acbc9290f32769f93b16d9b9929613fc39b24f2ca6f26aa",
+      "source": "AGENT.md",
+      "agent_json": "docs/entrypoints/AGENT.agent.json",
+      "source_sha256": "ac1e3b89e74028dfd857f3affa811702332e0f5a24cede89d68b0237f98030b2",
+      "role": "instructions"
+    },
+    {
+      "document_id": "urn:iisacc:document:4f40a153ca94b7ee14ca739671f26ecf9dfff5fb1a7650cd53f97d960ca4c974",
+      "source": "README.md",
+      "agent_json": "docs/entrypoints/README.agent.json",
+      "source_sha256": "820d09a32ad9396270e87f92d95bbcea92f268f65be9fcb2ca042b82f52ce895",
+      "role": "overview"
+    },
+    {
+      "document_id": "urn:iisacc:document:eafd8271278a7ec3cae1cf6e218bddc026a76e69f2797420bf9470cc4b87b74f",
+      "source": "docs/ColorModes.md",
+      "agent_json": "docs/ColorModes.agent.json",
+      "source_sha256": "114ed5c47f4a29590c10bd9eeb4774e34283a9733f1303411b13984d71ddb117",
+      "role": "guide"
+    },
+    {
+      "document_id": "urn:iisacc:document:4f4e956fe485412ae3bd619297079714ae0b12c3181d3388fa7ab53bd0881cb9",
+      "source": "docs/ColorValues.md",
+      "agent_json": "docs/ColorValues.agent.json",
+      "source_sha256": "f6aa8f8d165f456e35f6be59ed4308ab6320967a22788e5f3a20b8abd97786ef",
+      "role": "guide"
+    },
+    {
+      "document_id": "urn:iisacc:document:b10c88a3395fddb5ebe5f18fb9c0a1b1afb671415095f3f5522aeaf4349b8d81",
+      "source": "docs/Performance.md",
+      "agent_json": "docs/Performance.agent.json",
+      "source_sha256": "5b564fd4e2bc35a163be0fe99555b28d6f97fa573afced5a624eb8bf6b55f24e",
+      "role": "guide"
+    },
+    {
+      "document_id": "urn:iisacc:document:89ddb791f135b6d71f2a3c47e2ec27345c902a85a6e859947f5209206378bfea",
+      "source": "docs/PhotoshopEvidence.md",
+      "agent_json": "docs/PhotoshopEvidence.agent.json",
+      "source_sha256": "4d56d1a1249e27744bcc181c109d6be029e240e87e2fdbefb04bc832b430e71e",
+      "role": "guide"
+    },
+    {
+      "document_id": "urn:iisacc:document:ffcc024b8fdfa10372c249965a754456174c93876dcad567b27587aaa7132399",
+      "source": "docs/README.md",
+      "agent_json": "docs/README.agent.json",
+      "source_sha256": "a24cac7a4b76a7d727c0156a978dbb4b280d4951381080bedf490a4f8717712c",
+      "role": "overview"
+    },
+    {
+      "document_id": "urn:iisacc:document:c38c10f37e70c879d9d826ad52532fa7c8091acd5f704a0b65810b4e4d6bf15d",
+      "source": "docs/WindowsBuildAndRun.md",
+      "agent_json": "docs/WindowsBuildAndRun.agent.json",
+      "source_sha256": "7c54b4337aa8967bed076fa3a2baf2fac39d09a4e5f52ab107fccc888ecf73e7",
+      "role": "guide"
+    },
+    {
+      "document_id": "urn:iisacc:document:47ac4c133ac904c8440a78356d7e3c1174aa08dc7caadc45656d0fca1860044f",
+      "source": "docs/documentation-structure.md",
+      "agent_json": "docs/documentation-structure.agent.json",
+      "source_sha256": "d1acaad61474169aa1c84903a821eafe80296e36428d170d8f8be7a9a196f73f",
+      "role": "guide"
+    }
+  ],
+  "layout": {
+    "human_entry": "README.md",
+    "agent_entry": "AGENT.md",
+    "human_format": "markdown",
+    "agent_format": "structured_json",
+    "source_authority": "markdown"
+  },
+  "provenance": {
+    "generator": "workspace-docs",
+    "version": "1.0.0",
+    "profile": "lossless-blocks-v1",
+    "derived": true
+  }
+}

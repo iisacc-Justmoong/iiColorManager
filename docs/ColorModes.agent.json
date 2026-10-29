@@ -1,0 +1,258 @@
+{
+  "format": "iisacc.agent-document",
+  "schema_version": 1,
+  "document_id": "urn:iisacc:document:eafd8271278a7ec3cae1cf6e218bddc026a76e69f2797420bf9470cc4b87b74f",
+  "project": {
+    "id": "urn:iisacc:project:SDK%2FiiColorManager",
+    "name": "iiColorManager",
+    "root": "SDK/iiColorManager",
+    "kind": "sdk"
+  },
+  "source": {
+    "path": "docs/ColorModes.md",
+    "sha256": "114ed5c47f4a29590c10bd9eeb4774e34283a9733f1303411b13984d71ddb117",
+    "bytes": 3115,
+    "line_count": 46,
+    "encoding": "utf-8",
+    "language": "en"
+  },
+  "document": {
+    "title": "Color and interaction contracts",
+    "role": "guide",
+    "authority": "markdown_source"
+  },
+  "blocks": [
+    {
+      "id": "b000001",
+      "kind": "heading",
+      "start_line": 1,
+      "end_line": 1,
+      "raw": "# Color and interaction contracts\n",
+      "level": 1,
+      "title": "Color and interaction contracts"
+    },
+    {
+      "id": "b000002",
+      "kind": "blank",
+      "start_line": 2,
+      "end_line": 2,
+      "raw": "\n"
+    },
+    {
+      "id": "b000003",
+      "kind": "paragraph",
+      "start_line": 3,
+      "end_line": 8,
+      "raw": "The canonical color is straight-alpha, encoded SDR sRGB. All RGBA components are\nnormalized to [0,1]. A picker rejects non-finite edits and invalid enumerators\nwithout changing state; finite out-of-range numeric edits clamp to the channel\nrange. Standalone conversion helpers normalize non-finite inputs to their lower\nbound. Parsing accepts CSS RGB/RGBA shorthand and full hexadecimal notation;\neight-digit strings are RRGGBBAA. Six-digit edits preserve the current alpha.\n"
+    },
+    {
+      "id": "b000004",
+      "kind": "blank",
+      "start_line": 9,
+      "end_line": 9,
+      "raw": "\n"
+    },
+    {
+      "id": "b000005",
+      "kind": "table",
+      "start_line": 10,
+      "end_line": 20,
+      "raw": "| Mode | Main interaction | Numeric channels |\n| --- | --- | --- |\n| Hue Cube | x = saturation, y = inverted brightness; hue rail | H 0–360°, S/B 0–100% |\n| Brightness Cube | x = hue, y = inverted saturation; brightness rail | H 0–360°, S/B 0–100% |\n| Color Wheel | angle = hue, radius = saturation; brightness rail | H 0–360°, S/B 0–100% |\n| Grayscale Slider | neutral black ink, 0% white / 100% black | K 0–100% |\n| RGB Sliders | encoded sRGB components | R/G/B 0–255 |\n| HSB Sliders | hue, saturation, brightness | H 0–360°, S/B 0–100% |\n| CMYK Sliders | generic black separation | C/M/Y/K 0–100% |\n| Lab Sliders | D50 CIELAB, with sRGB gamut indication | L 0–100, a/b −128–127 |\n| Web Color Sliders | nearest 6×6×6 web-safe cube on explicit edit | R/G/B 0–255, step 51 |\n",
+      "columns": [
+        "Mode",
+        "Main interaction",
+        "Numeric channels"
+      ],
+      "rows": [
+        [
+          "Hue Cube",
+          "x = saturation, y = inverted brightness; hue rail",
+          "H 0–360°, S/B 0–100%"
+        ],
+        [
+          "Brightness Cube",
+          "x = hue, y = inverted saturation; brightness rail",
+          "H 0–360°, S/B 0–100%"
+        ],
+        [
+          "Color Wheel",
+          "angle = hue, radius = saturation; brightness rail",
+          "H 0–360°, S/B 0–100%"
+        ],
+        [
+          "Grayscale Slider",
+          "neutral black ink, 0% white / 100% black",
+          "K 0–100%"
+        ],
+        [
+          "RGB Sliders",
+          "encoded sRGB components",
+          "R/G/B 0–255"
+        ],
+        [
+          "HSB Sliders",
+          "hue, saturation, brightness",
+          "H 0–360°, S/B 0–100%"
+        ],
+        [
+          "CMYK Sliders",
+          "generic black separation",
+          "C/M/Y/K 0–100%"
+        ],
+        [
+          "Lab Sliders",
+          "D50 CIELAB, with sRGB gamut indication",
+          "L 0–100, a/b −128–127"
+        ],
+        [
+          "Web Color Sliders",
+          "nearest 6×6×6 web-safe cube on explicit edit",
+          "R/G/B 0–255, step 51"
+        ]
+      ]
+    },
+    {
+      "id": "b000006",
+      "kind": "blank",
+      "start_line": 21,
+      "end_line": 21,
+      "raw": "\n"
+    },
+    {
+      "id": "b000007",
+      "kind": "paragraph",
+      "start_line": 22,
+      "end_line": 29,
+      "raw": "Alpha is available independently in every mode. Displaying another mode never\nquantizes, converts, or otherwise edits the canonical color. A web-safe edit\nrounds all three components to multiples of 51; mode selection alone does not.\nHSB edits retain hue and saturation at zero brightness, and retain hue at zero\nsaturation. CMYK edits retain the requested separation instead of deriving a\ndifferent black component from the resulting RGB. Lab edits retain requested\nout-of-gamut coordinates while the display preview clips to sRGB. `accept()`\nand `cancel()` preserve/restore the full channel state, not merely RGB bytes.\n"
+    },
+    {
+      "id": "b000008",
+      "kind": "blank",
+      "start_line": 30,
+      "end_line": 30,
+      "raw": "\n"
+    },
+    {
+      "id": "b000009",
+      "kind": "paragraph",
+      "start_line": 31,
+      "end_line": 36,
+      "raw": "The grayscale readout derives sRGB-encoded Rec.709 relative luminance; editing it\nsets equal R/G/B values. CMYK uses R=(1−C)(1−K), G=(1−M)(1−K), B=(1−Y)(1−K).\nIt does not emulate Photoshop's active working CMYK/gray ICC profile. CIELAB\nconversion uses the sRGB transfer function and matrices, Bradford D65↔D50\nadaptation, and a D50 white of x=0.3457, y=0.3585. See\n[W3C CSS Color 4 conversion definitions](https://www.w3.org/TR/css-color-4/#color-conversion-code).\n"
+    },
+    {
+      "id": "b000010",
+      "kind": "blank",
+      "start_line": 37,
+      "end_line": 37,
+      "raw": "\n"
+    },
+    {
+      "id": "b000011",
+      "kind": "paragraph",
+      "start_line": 38,
+      "end_line": 46,
+      "raw": "Surface coordinates are normalized with a top-left origin. The wheel's red is\nat the right, green at 120°, blue at 240°. The wheel and hue rail display full\nbrightness so hue remains visible for black input; editing them preserves the\nselected brightness. The brightness cube intentionally displays its fixed\nbrightness. The wheel exterior is transparent. Other surfaces are opaque\nexcept the alpha ramp, which preserves straight alpha for checkerboard drawing.\nRaster output is contiguous row-major RGBA8, with four bytes per pixel, and a\n16-million-pixel safety limit. Pointer selection and marker coordinates share\nthe same native model and do not require JavaScript color conversion.\n"
+    }
+  ],
+  "outline": [
+    {
+      "block_id": "b000001",
+      "parent_id": null,
+      "level": 1,
+      "title": "Color and interaction contracts",
+      "anchor": "color-and-interaction-contracts",
+      "start_line": 1
+    }
+  ],
+  "indexes": {
+    "directive_candidates": [
+      {
+        "block_id": "b000007",
+        "line": 22,
+        "text": "Alpha is available independently in every mode. Displaying another mode never",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      },
+      {
+        "block_id": "b000011",
+        "line": 46,
+        "text": "the same native model and do not require JavaScript color conversion.",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      }
+    ],
+    "commands": [],
+    "links": [
+      {
+        "block_id": "b000009",
+        "label": "W3C CSS Color 4 conversion definitions",
+        "target": "https://www.w3.org/TR/css-color-4/#color-conversion-code",
+        "kind": "external",
+        "line": 36
+      }
+    ],
+    "tables": [
+      {
+        "block_id": "b000005",
+        "columns": [
+          "Mode",
+          "Main interaction",
+          "Numeric channels"
+        ],
+        "rows": [
+          [
+            "Hue Cube",
+            "x = saturation, y = inverted brightness; hue rail",
+            "H 0–360°, S/B 0–100%"
+          ],
+          [
+            "Brightness Cube",
+            "x = hue, y = inverted saturation; brightness rail",
+            "H 0–360°, S/B 0–100%"
+          ],
+          [
+            "Color Wheel",
+            "angle = hue, radius = saturation; brightness rail",
+            "H 0–360°, S/B 0–100%"
+          ],
+          [
+            "Grayscale Slider",
+            "neutral black ink, 0% white / 100% black",
+            "K 0–100%"
+          ],
+          [
+            "RGB Sliders",
+            "encoded sRGB components",
+            "R/G/B 0–255"
+          ],
+          [
+            "HSB Sliders",
+            "hue, saturation, brightness",
+            "H 0–360°, S/B 0–100%"
+          ],
+          [
+            "CMYK Sliders",
+            "generic black separation",
+            "C/M/Y/K 0–100%"
+          ],
+          [
+            "Lab Sliders",
+            "D50 CIELAB, with sRGB gamut indication",
+            "L 0–100, a/b −128–127"
+          ],
+          [
+            "Web Color Sliders",
+            "nearest 6×6×6 web-safe cube on explicit edit",
+            "R/G/B 0–255, step 51"
+          ]
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "generator": "workspace-docs",
+    "version": "1.0.0",
+    "profile": "lossless-blocks-v1",
+    "derived": true
+  }
+}

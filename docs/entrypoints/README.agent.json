@@ -1,0 +1,445 @@
+{
+  "format": "iisacc.agent-document",
+  "schema_version": 1,
+  "document_id": "urn:iisacc:document:4f40a153ca94b7ee14ca739671f26ecf9dfff5fb1a7650cd53f97d960ca4c974",
+  "project": {
+    "id": "urn:iisacc:project:SDK%2FiiColorManager",
+    "name": "iiColorManager",
+    "root": "SDK/iiColorManager",
+    "kind": "sdk"
+  },
+  "source": {
+    "path": "README.md",
+    "sha256": "820d09a32ad9396270e87f92d95bbcea92f268f65be9fcb2ca042b82f52ce895",
+    "bytes": 3475,
+    "line_count": 79,
+    "encoding": "utf-8",
+    "language": "en"
+  },
+  "document": {
+    "title": "iiColorManager",
+    "role": "overview",
+    "authority": "markdown_source"
+  },
+  "blocks": [
+    {
+      "id": "b000001",
+      "kind": "heading",
+      "start_line": 1,
+      "end_line": 1,
+      "raw": "# iiColorManager\n",
+      "level": 1,
+      "title": "iiColorManager"
+    },
+    {
+      "id": "b000002",
+      "kind": "blank",
+      "start_line": 2,
+      "end_line": 2,
+      "raw": "\n"
+    },
+    {
+      "id": "b000003",
+      "kind": "paragraph",
+      "start_line": 3,
+      "end_line": 5,
+      "raw": "The header-only `iiColorManager::Values` target provides shared encoded-sRGB\nRGBA values, validation, hexadecimal parsing, and source-over composition without\nlinking the picker library. See [Color values](docs/ColorValues.md).\n"
+    },
+    {
+      "id": "b000004",
+      "kind": "blank",
+      "start_line": 6,
+      "end_line": 6,
+      "raw": "\n"
+    },
+    {
+      "id": "b000005",
+      "kind": "paragraph",
+      "start_line": 7,
+      "end_line": 7,
+      "raw": "[Windows build and execution](docs/WindowsBuildAndRun.md)\n"
+    },
+    {
+      "id": "b000006",
+      "kind": "blank",
+      "start_line": 8,
+      "end_line": 8,
+      "raw": "\n"
+    },
+    {
+      "id": "b000007",
+      "kind": "paragraph",
+      "start_line": 9,
+      "end_line": 11,
+      "raw": "Package release: **0.1.1** (2026-10-19). This patch packages the current\nsource snapshot; build, test and installation evidence is recorded in the SDK\npatch-release report. Earlier versioned feature notes remain historical.\n"
+    },
+    {
+      "id": "b000008",
+      "kind": "blank",
+      "start_line": 12,
+      "end_line": 13,
+      "raw": "\n\n"
+    },
+    {
+      "id": "b000009",
+      "kind": "paragraph",
+      "start_line": 14,
+      "end_line": 16,
+      "raw": "Native C++23 color conversion and color-picker state for iiSDK applications.\nThe exported `iiColorManager::iiColorManager` CMake target has no Qt, platform UI,\nAdobe runtime, interpreter, or other SDK dependency.\n"
+    },
+    {
+      "id": "b000010",
+      "kind": "blank",
+      "start_line": 17,
+      "end_line": 17,
+      "raw": "\n"
+    },
+    {
+      "id": "b000011",
+      "kind": "paragraph",
+      "start_line": 18,
+      "end_line": 23,
+      "raw": "The nine presentation modes are **Hue Cube**, **Brightness Cube**, **Color Wheel**,\n**Grayscale Slider**, **RGB Sliders**, **HSB Sliders**, **CMYK Sliders**, **Lab\nSliders**, and **Web Color Sliders**. Mode changes preserve the exact selected\ncolor, alpha, and cancel snapshot. The same state supplies numeric channels,\ndynamic channel ramps, normalized pointer/keyboard coordinates and RGBA8 surface\nimages. UI adapters own event delivery, focus, translation, and drawing.\n"
+    },
+    {
+      "id": "b000012",
+      "kind": "blank",
+      "start_line": 24,
+      "end_line": 24,
+      "raw": "\n"
+    },
+    {
+      "id": "b000013",
+      "kind": "fenced_code",
+      "start_line": 25,
+      "end_line": 33,
+      "raw": "```cpp\n#include <iiColorManager/ColorManager.h>\niiColorManager::Picker picker;\npicker.begin({0.5, 0.25, 1.0, 0.75});\npicker.setMode(iiColorManager::Mode::LabSliders);\npicker.edit(iiColorManager::Channel::Lightness, 60);\nauto preview = picker.color();\npicker.cancel(); // Restores color and the original HSB/CMYK/Lab channel state.\n```\n",
+      "language": "cpp",
+      "code": "#include <iiColorManager/ColorManager.h>\niiColorManager::Picker picker;\npicker.begin({0.5, 0.25, 1.0, 0.75});\npicker.setMode(iiColorManager::Mode::LabSliders);\npicker.edit(iiColorManager::Channel::Lightness, 60);\nauto preview = picker.color();\npicker.cancel(); // Restores color and the original HSB/CMYK/Lab channel state.\n",
+      "closed": true
+    },
+    {
+      "id": "b000014",
+      "kind": "blank",
+      "start_line": 34,
+      "end_line": 34,
+      "raw": "\n"
+    },
+    {
+      "id": "b000015",
+      "kind": "fenced_code",
+      "start_line": 35,
+      "end_line": 40,
+      "raw": "```sh\ncmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build --parallel 3\nctest --test-dir build --output-on-failure\ncmake --install build --prefix /path/to/iiColorManager\n```\n",
+      "language": "sh",
+      "code": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build --parallel 3\nctest --test-dir build --output-on-failure\ncmake --install build --prefix /path/to/iiColorManager\n",
+      "closed": true
+    },
+    {
+      "id": "b000016",
+      "kind": "blank",
+      "start_line": 41,
+      "end_line": 41,
+      "raw": "\n"
+    },
+    {
+      "id": "b000017",
+      "kind": "paragraph",
+      "start_line": 42,
+      "end_line": 45,
+      "raw": "Consumers use `find_package(iiColorManager 0.1.1 CONFIG REQUIRED)` and\n`target_link_libraries(app PRIVATE iiColorManager::iiColorManager)`.\nThe project builds native code using the consumer's platform toolchain; host\ntests do not establish execution on other operating systems.\n"
+    },
+    {
+      "id": "b000018",
+      "kind": "blank",
+      "start_line": 46,
+      "end_line": 46,
+      "raw": "\n"
+    },
+    {
+      "id": "b000019",
+      "kind": "paragraph",
+      "start_line": 47,
+      "end_line": 50,
+      "raw": "See [color and interaction contracts](docs/ColorModes.md) and\n[Photoshop reference evidence](docs/PhotoshopEvidence.md). CMYK is a documented\ngeneric device model, not an ICC press conversion. This package does not claim\nnative Photoshop pixel equivalence or arbitrary document/profile conversion.\n"
+    },
+    {
+      "id": "b000020",
+      "kind": "blank",
+      "start_line": 51,
+      "end_line": 51,
+      "raw": "\n"
+    },
+    {
+      "id": "b000021",
+      "kind": "heading",
+      "start_line": 52,
+      "end_line": 52,
+      "raw": "## License\n",
+      "level": 2,
+      "title": "License"
+    },
+    {
+      "id": "b000022",
+      "kind": "blank",
+      "start_line": 53,
+      "end_line": 53,
+      "raw": "\n"
+    },
+    {
+      "id": "b000023",
+      "kind": "paragraph",
+      "start_line": 54,
+      "end_line": 54,
+      "raw": "SPDX-License-Identifier: MIT\n"
+    },
+    {
+      "id": "b000024",
+      "kind": "blank",
+      "start_line": 55,
+      "end_line": 55,
+      "raw": "\n"
+    },
+    {
+      "id": "b000025",
+      "kind": "paragraph",
+      "start_line": 56,
+      "end_line": 58,
+      "raw": "The original code and documentation in this repository are licensed under the\n[MIT License](LICENSE). Third-party code, libraries, fonts, tools, and model\nweights retain their respective licenses.\n"
+    },
+    {
+      "id": "b000026",
+      "kind": "blank",
+      "start_line": 59,
+      "end_line": 59,
+      "raw": "\n"
+    },
+    {
+      "id": "b000027",
+      "kind": "heading",
+      "start_line": 60,
+      "end_line": 60,
+      "raw": "## Source header layout\n",
+      "level": 2,
+      "title": "Source header layout"
+    },
+    {
+      "id": "b000028",
+      "kind": "blank",
+      "start_line": 61,
+      "end_line": 61,
+      "raw": "\n"
+    },
+    {
+      "id": "b000029",
+      "kind": "paragraph",
+      "start_line": 62,
+      "end_line": 66,
+      "raw": "Public headers and implementations live together in `src/iiColorManager/`.\nThere is no separate authored `include/` tree. Existing public `#include` names\nand exported CMake targets are unchanged; installation still places only public\nheaders in the package include directory. Generated export headers belong to\n`build/`, not to the authored source tree.\n"
+    },
+    {
+      "id": "b000030",
+      "kind": "blank",
+      "start_line": 67,
+      "end_line": 67,
+      "raw": "\n"
+    },
+    {
+      "id": "b000031",
+      "kind": "paragraph",
+      "start_line": 68,
+      "end_line": 70,
+      "raw": "Validate this layout from the SDK workspace with\n`python3 -B tests/test_source_header_layout.py`. Reconfigure, build, run CTest,\nand verify a staged installed consumer after changing source/header paths.\n"
+    },
+    {
+      "id": "b000032",
+      "kind": "blank",
+      "start_line": 71,
+      "end_line": 71,
+      "raw": "\n"
+    },
+    {
+      "id": "b000033",
+      "kind": "html",
+      "start_line": 72,
+      "end_line": 72,
+      "raw": "<!-- workspace-docs:readme:start -->\n"
+    },
+    {
+      "id": "b000034",
+      "kind": "heading",
+      "start_line": 73,
+      "end_line": 73,
+      "raw": "## Documentation entry points\n",
+      "level": 2,
+      "title": "Documentation entry points"
+    },
+    {
+      "id": "b000035",
+      "kind": "blank",
+      "start_line": 74,
+      "end_line": 74,
+      "raw": "\n"
+    },
+    {
+      "id": "b000036",
+      "kind": "list",
+      "start_line": 75,
+      "end_line": 78,
+      "raw": "- Human overview: this English `README.md`.\n- Agent instructions: [AGENT.md](AGENT.md).\n- Human documentation: [documentation index](docs/README.md).\n- Structured agent documentation: [agent index](docs/agent-index.json).\n",
+      "items": [
+        {
+          "marker": "-",
+          "text": "Human overview: this English `README.md`.",
+          "checked": null
+        },
+        {
+          "marker": "-",
+          "text": "Agent instructions: [AGENT.md](AGENT.md).",
+          "checked": null
+        },
+        {
+          "marker": "-",
+          "text": "Human documentation: [documentation index](docs/README.md).",
+          "checked": null
+        },
+        {
+          "marker": "-",
+          "text": "Structured agent documentation: [agent index](docs/agent-index.json).",
+          "checked": null
+        }
+      ]
+    },
+    {
+      "id": "b000037",
+      "kind": "html",
+      "start_line": 79,
+      "end_line": 79,
+      "raw": "<!-- workspace-docs:readme:end -->\n"
+    }
+  ],
+  "outline": [
+    {
+      "block_id": "b000001",
+      "parent_id": null,
+      "level": 1,
+      "title": "iiColorManager",
+      "anchor": "iicolormanager",
+      "start_line": 1
+    },
+    {
+      "block_id": "b000021",
+      "parent_id": "b000001",
+      "level": 2,
+      "title": "License",
+      "anchor": "license",
+      "start_line": 52
+    },
+    {
+      "block_id": "b000027",
+      "parent_id": "b000001",
+      "level": 2,
+      "title": "Source header layout",
+      "anchor": "source-header-layout",
+      "start_line": 60
+    },
+    {
+      "block_id": "b000034",
+      "parent_id": "b000001",
+      "level": 2,
+      "title": "Documentation entry points",
+      "anchor": "documentation-entry-points",
+      "start_line": 73
+    }
+  ],
+  "indexes": {
+    "directive_candidates": [
+      {
+        "block_id": "b000017",
+        "line": 42,
+        "text": "Consumers use `find_package(iiColorManager 0.1.1 CONFIG REQUIRED)` and",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      },
+      {
+        "block_id": "b000017",
+        "line": 45,
+        "text": "tests do not establish execution on other operating systems.",
+        "basis": "lexical_match",
+        "context": "paragraph"
+      }
+    ],
+    "commands": [
+      {
+        "block_id": "b000015",
+        "language": "sh",
+        "code": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build --parallel 3\nctest --test-dir build --output-on-failure\ncmake --install build --prefix /path/to/iiColorManager\n"
+      }
+    ],
+    "links": [
+      {
+        "block_id": "b000003",
+        "label": "Color values",
+        "target": "docs/ColorValues.md",
+        "kind": "relative",
+        "line": 5
+      },
+      {
+        "block_id": "b000005",
+        "label": "Windows build and execution",
+        "target": "docs/WindowsBuildAndRun.md",
+        "kind": "relative",
+        "line": 7
+      },
+      {
+        "block_id": "b000019",
+        "label": "color and interaction contracts",
+        "target": "docs/ColorModes.md",
+        "kind": "relative",
+        "line": 47
+      },
+      {
+        "block_id": "b000019",
+        "label": "Photoshop reference evidence",
+        "target": "docs/PhotoshopEvidence.md",
+        "kind": "relative",
+        "line": 48
+      },
+      {
+        "block_id": "b000025",
+        "label": "MIT License",
+        "target": "LICENSE",
+        "kind": "relative",
+        "line": 57
+      },
+      {
+        "block_id": "b000036",
+        "label": "AGENT.md",
+        "target": "AGENT.md",
+        "kind": "relative",
+        "line": 76
+      },
+      {
+        "block_id": "b000036",
+        "label": "documentation index",
+        "target": "docs/README.md",
+        "kind": "relative",
+        "line": 77
+      },
+      {
+        "block_id": "b000036",
+        "label": "agent index",
+        "target": "docs/agent-index.json",
+        "kind": "relative",
+        "line": 78
+      }
+    ],
+    "tables": []
+  },
+  "provenance": {
+    "generator": "workspace-docs",
+    "version": "1.0.0",
+    "profile": "lossless-blocks-v1",
+    "derived": true
+  }
+}
