@@ -37,3 +37,6 @@ foreach(_kind values picker)
     run("${CMAKE_COMMAND}" --build "${_build}" --config "${BUILD_CONFIG}" --parallel 2)
     run("${CTEST_COMMAND}" --test-dir "${_build}" --build-config "${BUILD_CONFIG}" --output-on-failure)
 endforeach()
+
+# Only remove this run's uniquely named consumer staging tree.
+file(REMOVE_RECURSE "${_root}")
