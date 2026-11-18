@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 project(iiColorManager VERSION 0.1.1 LANGUAGES CXX)
+include(./cmake/ModuleImports.cmake)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)

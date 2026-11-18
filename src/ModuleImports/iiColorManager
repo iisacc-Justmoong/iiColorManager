@@ -1,0 +1,12 @@
+#pragma once
+
+// C++ public entry for iiColorManager; the linked components select the API.
+
+#if defined(IISDK_IMPORT_IICOLORMANAGER_FULL)
+#include <iiColorManager/ColorManager.h>
+#include <iiColorManager/Export.h>
+#endif
+
+#if defined(IISDK_IMPORT_IICOLORMANAGER_VALUES)
+#include <iiColorManager/ColorValue.h>
+#endif
