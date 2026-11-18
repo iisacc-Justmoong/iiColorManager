@@ -11,6 +11,7 @@ Markdown is the maintained human source. Agent JSON is a structured, source-trac
 | [`README.md`](../README.md) | [JSON](entrypoints/README.agent.json) |
 | [`docs/ColorModes.md`](ColorModes.md) | [JSON](ColorModes.agent.json) |
 | [`docs/ColorValues.md`](ColorValues.md) | [JSON](ColorValues.agent.json) |
+| [`docs/License.md`](License.md) | [JSON](License.agent.json) |
 | [`docs/Performance.md`](Performance.md) | [JSON](Performance.agent.json) |
 | [`docs/PhotoshopEvidence.md`](PhotoshopEvidence.md) | [JSON](PhotoshopEvidence.agent.json) |
 | [`docs/WindowsBuildAndRun.md`](WindowsBuildAndRun.md) | [JSON](WindowsBuildAndRun.agent.json) |
