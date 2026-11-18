@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 project(iiColorManager VERSION 0.1.1 LANGUAGES CXX)
+set(iiColorManager_SPDX_LICENSE "Apache-2.0")
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)
@@ -67,9 +68,18 @@ write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConf
     VERSION ${PROJECT_VERSION} COMPATIBILITY SameMinorVersion)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/iiColorManagerConfigVersion.cmake" DESTINATION "${_package_dir}" COMPONENT Values)
-install(FILES README.md DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager)
+install(FILES README.md LICENSE NOTICE DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager)
+install(FILES LICENSE NOTICE DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager COMPONENT Values)
+install(FILES docs/License.md DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager/docs COMPONENT Values)
 install(DIRECTORY docs/ DESTINATION ${CMAKE_INSTALL_DATADIR}/iiColorManager/docs)
 if(BUILD_TESTING)
+    add_test(NAME iiColorManager.license COMMAND "${CMAKE_COMMAND}"
+        "-DSOURCE_ROOT=${CMAKE_CURRENT_SOURCE_DIR}"
+        "-DBUILD_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
+        "-DDATA_DIR=${CMAKE_INSTALL_DATADIR}"
+        "-DINSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}"
+        "-DBUILD_CONFIG=$<CONFIG>"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/License.cmake")
     add_test(NAME iiColorManager.source_layout COMMAND "${CMAKE_COMMAND}"
         "-DPROJECT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/SourceLayout.cmake")
