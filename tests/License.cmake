@@ -1,5 +1,5 @@
-if(NOT DEFINED SOURCE_ROOT OR NOT DEFINED BUILD_ROOT OR NOT DEFINED DATA_DIR OR NOT DEFINED INSTALL_LIBDIR)
-    message(FATAL_ERROR "License verification requires SOURCE_ROOT, BUILD_ROOT, DATA_DIR and INSTALL_LIBDIR")
+if(NOT DEFINED SOURCE_ROOT OR NOT DEFINED BUILD_ROOT OR NOT DEFINED DATA_DIR OR NOT DEFINED INSTALL_LIBDIR OR NOT DEFINED BUILD_CONFIG)
+    message(FATAL_ERROR "License verification requires SOURCE_ROOT, BUILD_ROOT, DATA_DIR, INSTALL_LIBDIR and BUILD_CONFIG")
 endif()
 function(require_text path needle description)
     file(READ "${path}" _body)
@@ -61,10 +61,10 @@ endfunction()
 function(run_install prefix)
     cmake_parse_arguments(_install "" "COMPONENT" "" ${ARGN})
     if(_install_COMPONENT)
-        execute_process(COMMAND "${CMAKE_COMMAND}" --install "${BUILD_ROOT}" --prefix "${prefix}" --component "${_install_COMPONENT}"
+        execute_process(COMMAND "${CMAKE_COMMAND}" --install "${BUILD_ROOT}" --config "${BUILD_CONFIG}" --prefix "${prefix}" --component "${_install_COMPONENT}"
             RESULT_VARIABLE _result OUTPUT_VARIABLE _output ERROR_VARIABLE _error)
     else()
-        execute_process(COMMAND "${CMAKE_COMMAND}" --install "${BUILD_ROOT}" --prefix "${prefix}"
+        execute_process(COMMAND "${CMAKE_COMMAND}" --install "${BUILD_ROOT}" --config "${BUILD_CONFIG}" --prefix "${prefix}"
             RESULT_VARIABLE _result OUTPUT_VARIABLE _output ERROR_VARIABLE _error)
     endif()
     if(NOT _result EQUAL 0)
